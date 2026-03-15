@@ -4,7 +4,7 @@ export function EmailCapture() {
   return (
     <section className="w-full bg-primary py-12 md:py-20">
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20 text-center">
-        <h2 className="text-2xl md:text-[2rem] font-extrabold tracking-[-0.03em] text-white mb-3 md:mb-4">
+        <h2 className="text-2xl md:text-[2rem] font-extrabold tracking-[-0.03em] mb-3 md:mb-4" style={{ color: 'white' }}>
           Subscribe To Our Newsletter
         </h2>
         <p className="text-sm md:text-base text-white/90 mb-6 md:mb-8 max-w-md mx-auto">

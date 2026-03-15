@@ -9,9 +9,10 @@ import { useTransition } from "react"
 
 interface ShopifyProductCardProps {
   product: Product
+  ctaBackgroundColor?: string
 }
 
-export function ShopifyProductCard({ product }: ShopifyProductCardProps) {
+export function ShopifyProductCard({ product, ctaBackgroundColor }: ShopifyProductCardProps) {
   const { addItem } = useCart()
   const [isPending, startTransition] = useTransition()
   
@@ -61,7 +62,8 @@ export function ShopifyProductCard({ product }: ShopifyProductCardProps) {
       <button 
         onClick={handleAddToCart}
         disabled={isPending || !variant}
-        className="w-full rounded-full bg-primary py-2 md:py-2.5 text-xs md:text-sm font-medium text-white hover:bg-primary-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className={`w-full rounded-full py-2 md:py-2.5 text-xs md:text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${ctaBackgroundColor ? 'text-foreground' : 'bg-primary text-white hover:bg-primary-hover'}`}
+        style={ctaBackgroundColor ? { backgroundColor: ctaBackgroundColor } : undefined}
       >
         {isPending ? (
           <>

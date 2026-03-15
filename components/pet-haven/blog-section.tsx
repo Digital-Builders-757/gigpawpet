@@ -33,9 +33,34 @@ const smallArticles = [
 
 export function BlogSection() {
   return (
-    <section className="w-full bg-card py-10 md:py-16">
+    <section className="w-full bg-white py-12 md:py-20">
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-foreground mb-6 md:mb-8">Pet News & Tips</h2>
+        {/* Header Card - same format as Cat/Dog/Follow Us sections */}
+        <div className="relative rounded-2xl md:rounded-3xl bg-card overflow-hidden mb-6 md:mb-8 min-h-[160px] md:min-h-[200px] flex items-center shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
+          <div className="relative z-10 p-6 md:p-12 max-w-[60%] md:max-w-md">
+            <h2 className="text-2xl md:text-4xl font-extrabold text-foreground mb-2 md:mb-4">
+              Pet News & Tips
+            </h2>
+            <p className="text-sm md:text-base text-muted-foreground">
+              Tips, trends, and valuable information for Pet Parents.
+            </p>
+          </div>
+
+          {/* Decorative polygon with image */}
+          <div
+            className="absolute right-0 top-0 bottom-0 w-1/2"
+            style={{ clipPath: "polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=600&h=400&fit=crop"
+              alt="Pet reading"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 50vw, 400px"
+            />
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Large Featured Card */}
           <div className="border border-border rounded-2xl md:rounded-3xl p-5 md:p-8 flex flex-col">

@@ -7,20 +7,20 @@ export async function ShopifyDogSupplies() {
   
   try {
     // Try to fetch from "dogs" collection, fallback to all products
-    products = await getCollectionProducts("dogs", { first: 4 })
+    products = await getCollectionProducts("dogs", { first: 5 })
     
     if (products.length === 0) {
-      products = (await getProducts({ first: 4 })).slice(0, 4)
+      products = (await getProducts({ first: 5 })).slice(0, 5)
     }
   } catch (error) {
     console.error("Error fetching dog products:", error)
   }
 
   return (
-    <section className="w-full bg-background py-12 md:py-20">
+    <section className="w-full py-12 md:py-20" style={{ backgroundColor: '#2e86b5' }}>
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
         {/* Header Card */}
-        <div className="relative rounded-2xl md:rounded-3xl bg-card overflow-hidden mb-6 md:mb-8 min-h-[160px] md:min-h-[200px] flex items-center">
+        <div className="relative rounded-2xl md:rounded-3xl bg-card overflow-hidden mb-6 md:mb-8 min-h-[160px] md:min-h-[200px] flex items-center shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
           <div className="relative z-10 p-6 md:p-12 max-w-[60%] md:max-w-md">
             <h2 className="text-2xl md:text-4xl font-extrabold text-foreground mb-2 md:mb-4">
               Dog Supplies
@@ -46,9 +46,9 @@ export async function ShopifyDogSupplies() {
 
         {/* Products Grid */}
         {products.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {products.map((product) => (
-              <ShopifyProductCard key={product.id} product={product} />
+              <ShopifyProductCard key={product.id} product={product} ctaBackgroundColor="#ffde5a" />
             ))}
           </div>
         ) : (

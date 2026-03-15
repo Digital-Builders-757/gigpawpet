@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Instagram, Facebook } from "lucide-react"
 import Link from "next/link"
 
@@ -35,45 +36,60 @@ function TikTokIcon({ className }: { className?: string }) {
 
 export function SocialVideos() {
   return (
-    <section className="w-full bg-light-blue py-6 md:py-8">
+    <section className="w-full bg-white py-12 md:py-20">
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 md:gap-4 mb-4 md:mb-5">
-          <div>
-            <h2 className="text-xl md:text-2xl font-extrabold text-foreground mb-0.5">
+        {/* Header Card - same format as Cat section */}
+        <div className="relative rounded-2xl md:rounded-3xl bg-card overflow-hidden mb-6 md:mb-8 min-h-[160px] md:min-h-[200px] flex items-center shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
+          <div className="relative z-10 p-6 md:p-12 max-w-[60%] md:max-w-md">
+            <h2 className="text-2xl md:text-4xl font-extrabold text-foreground mb-2 md:mb-4">
               Follow Us
             </h2>
-            <p className="text-xs md:text-sm text-muted-foreground">
+            <p className="text-sm md:text-base text-muted-foreground mb-4">
               Watch our latest pet videos and adorable moments
             </p>
+            <div className="flex items-center gap-2 md:gap-3">
+              <Link
+                href="https://www.instagram.com/gigglingpawsandpets_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary text-white hover:bg-primary-hover transition-colors"
+                aria-label="Follow us on Instagram"
+              >
+                <Instagram className="w-4 h-4 md:w-5 md:h-5" />
+              </Link>
+              <Link
+                href="https://www.facebook.com/GigglingPaws/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary text-white hover:bg-primary-hover transition-colors"
+                aria-label="Follow us on Facebook"
+              >
+                <Facebook className="w-4 h-4 md:w-5 md:h-5" />
+              </Link>
+              <Link
+                href="https://www.tiktok.com/@gigglingpawsandpets"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary text-white hover:bg-primary-hover transition-colors"
+                aria-label="Follow us on TikTok"
+              >
+                <TikTokIcon className="w-4 h-4 md:w-5 md:h-5" />
+              </Link>
+            </div>
           </div>
-          <div className="flex items-center gap-2 md:gap-3">
-            <Link 
-              href="https://www.instagram.com/gigglingpawsandpets_/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary text-white hover:bg-primary-hover transition-colors"
-              aria-label="Follow us on Instagram"
-            >
-              <Instagram className="w-4 h-4 md:w-5 md:h-5" />
-            </Link>
-            <Link 
-              href="https://www.facebook.com/GigglingPaws/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary text-white hover:bg-primary-hover transition-colors"
-              aria-label="Follow us on Facebook"
-            >
-              <Facebook className="w-4 h-4 md:w-5 md:h-5" />
-            </Link>
-            <Link 
-              href="https://www.tiktok.com/@gigglingpawsandpets" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary text-white hover:bg-primary-hover transition-colors"
-              aria-label="Follow us on TikTok"
-            >
-              <TikTokIcon className="w-4 h-4 md:w-5 md:h-5" />
-            </Link>
+
+          {/* Decorative polygon with image */}
+          <div
+            className="absolute right-0 top-0 bottom-0 w-1/2"
+            style={{ clipPath: "polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=600&h=400&fit=crop"
+              alt="Cute pets"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 50vw, 400px"
+            />
           </div>
         </div>
 
@@ -81,7 +97,7 @@ export function SocialVideos() {
           {tiktokVideos.map((video) => (
             <div 
               key={video.id}
-              className="relative bg-card rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex justify-center"
+              className="relative bg-white rounded-xl overflow-hidden flex justify-center"
             >
               <div className="w-full max-w-[280px] mx-auto aspect-[9/16]">
                 <iframe

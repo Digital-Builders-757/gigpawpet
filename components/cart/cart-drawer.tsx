@@ -148,13 +148,9 @@ export function CartDrawer() {
                   </span>
                 </div>
                 <Button className="w-full" asChild>
-                  <a
-                    href={cart.checkoutUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Checkout
-                  </a>
+                  <Link href="/cart" onClick={closeCart}>
+                    View cart & checkout
+                  </Link>
                 </Button>
                 <Button variant="outline" className="mt-2 w-full" asChild>
                   <Link href="/" onClick={closeCart}>

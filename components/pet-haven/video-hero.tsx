@@ -39,7 +39,8 @@ export function VideoHero() {
           </Link>
           <Link
             href="/collections/cats"
-            className="rounded-full bg-white px-6 md:px-8 py-2.5 md:py-3 text-sm font-medium text-foreground hover:bg-gray-100 transition-colors text-center"
+            className="rounded-full px-6 md:px-8 py-2.5 md:py-3 text-sm font-medium text-foreground hover:opacity-90 transition-opacity text-center"
+            style={{ backgroundColor: '#ffde5a' }}
           >
             Shop Cat Products
           </Link>
