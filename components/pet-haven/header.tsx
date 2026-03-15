@@ -6,7 +6,7 @@ import { Search, Menu, X } from "lucide-react"
 import { useCart } from "@/context/CartContext"
 
 export function Header() {
-  const { cart } = useCart()
+  const { cart, openCart } = useCart()
   const totalQuantity = cart?.totalQuantity ?? 0
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
@@ -61,18 +61,12 @@ export function Header() {
             <button className="hidden md:block text-sm font-medium text-foreground hover:text-primary transition-colors">
               Sign In
             </button>
-            {cart?.checkoutUrl ? (
-              <a 
-                href={cart.checkoutUrl}
-                className="rounded-full border border-navy px-3 md:px-4 py-2 text-xs md:text-sm font-medium text-foreground hover:bg-muted transition-colors"
-              >
-                Cart ({totalQuantity})
-              </a>
-            ) : (
-              <button className="rounded-full border border-navy px-3 md:px-4 py-2 text-xs md:text-sm font-medium text-foreground hover:bg-muted transition-colors">
-                Cart ({totalQuantity})
-              </button>
-            )}
+            <button
+              onClick={openCart}
+              className="rounded-full border border-navy px-3 md:px-4 py-2 text-xs md:text-sm font-medium text-foreground hover:bg-muted transition-colors"
+            >
+              Cart ({totalQuantity})
+            </button>
           </div>
         </div>
 

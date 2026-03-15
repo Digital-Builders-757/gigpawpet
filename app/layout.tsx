@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { CartProvider } from '@/context/CartContext'
+import { CartDrawer } from '@/components/cart/cart-drawer'
 import './globals.css'
 
 const inter = Inter({ 
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased`}>
         <CartProvider>
           {children}
+          <CartDrawer />
         </CartProvider>
         <Analytics />
       </body>
