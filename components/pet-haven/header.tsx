@@ -31,6 +31,7 @@ export function Header() {
               alt="Giggling Paws & Pets"
               width={48}
               height={48}
+              priority
               className="h-10 md:h-12 w-auto object-contain"
             />
           </a>

@@ -19,8 +19,8 @@ export async function ShopifyNewArrivals() {
         
         {products.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {products.map((product) => (
-              <ShopifyProductCard key={product.id} product={product} />
+            {products.map((product, index) => (
+              <ShopifyProductCard key={product.id} product={product} priority={index < 3} />
             ))}
           </div>
         ) : (

@@ -76,6 +76,7 @@ export function ShopifyProductMain({ product }: ShopifyProductMainProps) {
                       alt={image.altText || `${product.title} thumbnail ${index + 1}`}
                       width={80}
                       height={80}
+                      sizes="80px"
                       className="object-cover w-full h-full"
                     />
                   </button>
@@ -90,6 +91,8 @@ export function ShopifyProductMain({ product }: ShopifyProductMainProps) {
                   src={selectedImage.url}
                   alt={selectedImage.altText || product.title}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                   className="object-cover"
                 />
               ) : (

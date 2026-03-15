@@ -103,6 +103,7 @@ export async function getNewArrivals(first: number = 8): Promise<Product[]> {
   return normalizeProducts(products)
 }
 
+// TODO: verify if used - not currently imported anywhere
 export async function getBestSellers(first: number = 8): Promise<Product[]> {
   const { data, errors } = await shopifyClient.request<{
     products: { edges: Array<{ node: ShopifyProduct }> }

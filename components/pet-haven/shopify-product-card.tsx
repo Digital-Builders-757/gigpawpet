@@ -10,9 +10,10 @@ import { useTransition } from "react"
 interface ShopifyProductCardProps {
   product: Product
   ctaBackgroundColor?: string
+  priority?: boolean
 }
 
-export function ShopifyProductCard({ product, ctaBackgroundColor }: ShopifyProductCardProps) {
+export function ShopifyProductCard({ product, ctaBackgroundColor, priority }: ShopifyProductCardProps) {
   const { addItem } = useCart()
   const [isPending, startTransition] = useTransition()
   
@@ -37,6 +38,8 @@ export function ShopifyProductCard({ product, ctaBackgroundColor }: ShopifyProdu
               src={image.url}
               alt={image.altText ?? product.title}
               fill
+              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+              priority={priority}
               className="object-cover"
             />
           ) : (

@@ -69,6 +69,7 @@ export function BlogSection() {
                 src="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=600&h=338&fit=crop"
                 alt="Hot Pet Trends"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -98,6 +99,7 @@ export function BlogSection() {
                     src={article.image}
                     alt={article.title}
                     fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover"
                   />
                 </div>
