@@ -16,7 +16,7 @@ export function CartDrawer() {
 
   return (
     <Sheet open={cartOpen} onOpenChange={(open) => !open && closeCart()}>
-      <SheetContent side="right" className="flex w-full flex-col sm:max-w-lg">
+      <SheetContent side="right" className="flex w-full flex-col sm:max-w-lg px-6 pb-6">
         <SheetHeader>
           <SheetTitle>Shopping Cart</SheetTitle>
         </SheetHeader>

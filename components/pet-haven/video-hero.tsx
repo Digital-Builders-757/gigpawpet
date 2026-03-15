@@ -32,13 +32,13 @@ export function VideoHero() {
         </p>
         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto px-4 sm:px-0">
           <Link
-            href="/shop/dogs"
+            href="/collections/dogs"
             className="rounded-full bg-primary px-6 md:px-8 py-2.5 md:py-3 text-sm font-medium text-white hover:bg-primary-hover transition-colors text-center"
           >
             Shop Dog Products
           </Link>
           <Link
-            href="/shop/cats"
+            href="/collections/cats"
             className="rounded-full bg-white px-6 md:px-8 py-2.5 md:py-3 text-sm font-medium text-foreground hover:bg-gray-100 transition-colors text-center"
           >
             Shop Cat Products

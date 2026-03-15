@@ -1,8 +1,25 @@
 const footerLinks = {
-  shop: ["Seasonal", "Dog", "Cat", "Pet News"],
-  information: ["Privacy Policy", "Refund Policy", "Terms of Service"],
-  help: ["About Us", "Contact us", "Blog"],
-  social: ["Instagram", "Facebook", "Twitter", "YouTube"],
+  shop: [
+    { label: "Seasonal", href: "/collections/seasonal" },
+    { label: "Dog", href: "/collections/dogs" },
+    { label: "Cat", href: "/collections/cats" },
+    { label: "Pet News", href: "/pet-news" },
+  ],
+  information: [
+    { label: "Privacy Policy", href: "https://gigglingpawsandpets.com/policies/privacy-policy" },
+    { label: "Refund Policy", href: "https://gigglingpawsandpets.com/policies/refund-policy" },
+    { label: "Terms of Service", href: "https://gigglingpawsandpets.com/policies/terms-of-service" },
+  ],
+  help: [
+    { label: "About Us", href: "/about" },
+    { label: "Contact us", href: "/contact" },
+    { label: "Blog", href: "https://gigglingpawsandpets.com/blogs/news" },
+  ],
+  social: [
+    { label: "Instagram", href: "https://www.instagram.com/gigglingpawsandpets_/" },
+    { label: "Facebook", href: "https://www.facebook.com/GigglingPaws/" },
+    { label: "TikTok", href: "https://www.tiktok.com/@gigglingpawsandpets" },
+  ],
 }
 
 export function Footer() {
@@ -25,9 +42,16 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">Shop</h4>
             <ul className="space-y-2">
               {footerLinks.shop.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-white/70 text-sm hover:text-white transition-colors">
-                    {link}
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    {...(link.href.startsWith("http") && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                    className="text-white/70 text-sm hover:text-white transition-colors"
+                  >
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -39,9 +63,12 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">Information</h4>
             <ul className="space-y-2">
               {footerLinks.information.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-white/70 text-sm hover:text-white transition-colors">
-                    {link}
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="text-white/70 text-sm hover:text-white transition-colors"
+                  >
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -53,9 +80,16 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">Help</h4>
             <ul className="space-y-2">
               {footerLinks.help.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-white/70 text-sm hover:text-white transition-colors">
-                    {link}
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    {...(link.href.startsWith("http") && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                    className="text-white/70 text-sm hover:text-white transition-colors"
+                  >
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -67,9 +101,14 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">Follow Us</h4>
             <ul className="space-y-2">
               {footerLinks.social.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-white/70 text-sm hover:text-white transition-colors">
-                    {link}
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/70 text-sm hover:text-white transition-colors"
+                  >
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -83,10 +122,20 @@ export function Footer() {
             © 2024 Giggling Paws & Pets. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-white/60 text-sm hover:text-white transition-colors">
+            <a
+              href="https://gigglingpawsandpets.com/policies/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 text-sm hover:text-white transition-colors"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="text-white/60 text-sm hover:text-white transition-colors">
+            <a
+              href="https://gigglingpawsandpets.com/policies/terms-of-service"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 text-sm hover:text-white transition-colors"
+            >
               Terms of Service
             </a>
           </div>

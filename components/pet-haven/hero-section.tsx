@@ -8,7 +8,7 @@ export function HeroSection() {
     <section className="w-full bg-card">
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Dog Image Card */}
-        <Link href="/shop/dogs" className="relative h-[280px] sm:h-[350px] md:h-[450px] w-full overflow-hidden group cursor-pointer">
+        <Link href="/collections/dogs" className="relative h-[280px] sm:h-[350px] md:h-[450px] w-full overflow-hidden group cursor-pointer">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/img-2-UNVgNfKdaAF7etqOG9d3ipm5W5YG4a.png"
             alt="Golden retriever dog sitting on wooden floor"
@@ -24,7 +24,7 @@ export function HeroSection() {
         </Link>
 
         {/* Cat Image Card */}
-        <Link href="/shop/cats" className="relative h-[280px] sm:h-[350px] md:h-[450px] w-full overflow-hidden group cursor-pointer">
+        <Link href="/collections/cats" className="relative h-[280px] sm:h-[350px] md:h-[450px] w-full overflow-hidden group cursor-pointer">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/img-1-ziUoJb0aJEY38da3aIW4Fv6wUAFLPj.png"
             alt="Fluffy brown tabby cat close-up"
