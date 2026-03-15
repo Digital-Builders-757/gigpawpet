@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import { TopBanner } from "@/components/pet-haven/top-banner"
 import { Header } from "@/components/pet-haven/header"
 import { SecondaryNav } from "@/components/pet-haven/secondary-nav"
+import { PromoBanner } from "@/components/pet-haven/promo-banner"
 import { ShopifyProductMain } from "@/components/pet-haven/shopify-product-main"
 import { ProductDetails } from "@/components/pet-haven/product-details"
 import { ShopifyRelatedProducts } from "@/components/pet-haven/shopify-related-products"
@@ -14,15 +15,18 @@ interface ProductPageProps {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params
-  
-  let product = null
-  let relatedProducts = []
-  
+
+  let product: Awaited<ReturnType<typeof getProductByHandle>> = null
+  let relatedProducts: Awaited<ReturnType<typeof getProducts>> = []
+
   try {
-    product = await getProductByHandle(slug)
+    const [productResult, allProducts] = await Promise.all([
+      getProductByHandle(slug),
+      getProducts({ first: 10 }),
+    ])
+    product = productResult
     if (product) {
-      const allProducts = await getProducts({ first: 5 })
-      relatedProducts = allProducts.filter(p => p.id !== product!.id).slice(0, 4)
+      relatedProducts = allProducts.filter((p) => p.id !== product!.id).slice(0, 4)
     }
   } catch (error) {
     console.error("Error fetching product:", error)
@@ -31,7 +35,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   // If no product found from Shopify, show a fallback demo product
   if (!product) {
     return (
-      <div className="min-h-screen bg-muted">
+      <main id="main-content" className="min-h-screen bg-muted" role="main">
         <TopBanner />
         <Header />
         <SecondaryNav />
@@ -40,24 +44,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <p className="text-muted-foreground mb-8">
             Connect your Shopify store to display products, or the product "{slug}" doesn't exist.
           </p>
-          <a href="/" className="rounded-full bg-primary px-6 py-3 text-white font-medium hover:bg-primary-hover transition-colors">
+          <a href="/" className="rounded-full bg-primary px-6 py-3 text-white font-medium hover:bg-primary-hover transition-colors" aria-label="Return to homepage">
             Back to Home
           </a>
         </div>
         <Footer />
-      </div>
+      </main>
     )
   }
 
   return (
-    <div className="min-h-screen bg-muted">
+    <main id="main-content" className="min-h-screen bg-muted" role="main">
       <TopBanner />
       <Header />
       <SecondaryNav />
+      <PromoBanner />
       <ShopifyProductMain product={product} />
       <ProductDetails />
       <ShopifyRelatedProducts products={relatedProducts} />
       <Footer />
-    </div>
+    </main>
   )
 }

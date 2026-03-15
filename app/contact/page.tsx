@@ -3,15 +3,25 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { Instagram, Facebook } from "lucide-react"
 import { TopBanner } from "@/components/pet-haven/top-banner"
 import { Header } from "@/components/pet-haven/header"
 import { PrimaryNav } from "@/components/pet-haven/primary-nav"
 import { SecondaryNav } from "@/components/pet-haven/secondary-nav"
+import { PromoBanner } from "@/components/pet-haven/promo-banner"
 import { Footer } from "@/components/pet-haven/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+    </svg>
+  )
+}
 
 export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
@@ -27,11 +37,12 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <main id="main-content" className="min-h-screen bg-background" role="main">
       <TopBanner />
       <Header />
       <PrimaryNav />
       <SecondaryNav />
+      <PromoBanner />
 
       <section className="w-full bg-background py-8 md:py-12">
         <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
@@ -75,9 +86,9 @@ export default function ContactPage() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" aria-label="Contact form">
                   <div>
-                    <Label htmlFor="name">Your Name</Label>
+                    <Label htmlFor="name" className="block pb-2">Your Name</Label>
                     <Input
                       id="name"
                       name="name"
@@ -87,7 +98,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="phone">Your Phone</Label>
+                    <Label htmlFor="phone" className="block pb-2">Your Phone</Label>
                     <Input
                       id="phone"
                       name="phone"
@@ -97,7 +108,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email">Your Email *</Label>
+                    <Label htmlFor="email" className="block pb-2">Your Email *</Label>
                     <Input
                       id="email"
                       name="email"
@@ -108,7 +119,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="comment">Your Comment *</Label>
+                    <Label htmlFor="comment" className="block pb-2">Your Comment *</Label>
                     <Textarea
                       id="comment"
                       name="comment"
@@ -138,30 +149,33 @@ export default function ContactPage() {
                 love to hear from you. Follow us on our social media pages for
                 additional health and safety information for your pets.
               </p>
-              <div className="space-y-4">
+              <div className="flex items-center gap-3">
                 <Link
                   href="https://www.instagram.com/gigglingpawsandpets_/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-primary hover:underline"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:bg-primary-hover transition-colors"
+                  aria-label="Follow us on Instagram"
                 >
-                  Instagram
+                  <Instagram className="w-5 h-5" />
                 </Link>
                 <Link
                   href="https://www.facebook.com/GigglingPaws/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-primary hover:underline"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:bg-primary-hover transition-colors"
+                  aria-label="Follow us on Facebook"
                 >
-                  Facebook
+                  <Facebook className="w-5 h-5" />
                 </Link>
                 <Link
                   href="https://www.tiktok.com/@gigglingpawsandpets"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-primary hover:underline"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:bg-primary-hover transition-colors"
+                  aria-label="Follow us on TikTok"
                 >
-                  TikTok
+                  <TikTokIcon className="w-5 h-5" />
                 </Link>
               </div>
             </div>

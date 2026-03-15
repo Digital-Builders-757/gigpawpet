@@ -49,7 +49,7 @@ export function ShopifyProductMain({ product }: ShopifyProductMainProps) {
     <section className="w-full bg-card py-8 md:py-12">
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6" aria-label="Breadcrumb">
           <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
           <span>/</span>
           <Link href="/shop" className="hover:text-foreground transition-colors">Shop</Link>
@@ -70,6 +70,8 @@ export function ShopifyProductMain({ product }: ShopifyProductMainProps) {
                     className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-colors ${
                       selectedImageIndex === index ? "border-primary" : "border-transparent"
                     }`}
+                    aria-label={`View image ${index + 1} of ${images.length}`}
+                    aria-pressed={selectedImageIndex === index}
                   >
                     <Image
                       src={image.url}
@@ -155,6 +157,8 @@ export function ShopifyProductMain({ product }: ShopifyProductMainProps) {
                           ? "bg-primary text-white"
                           : "bg-muted text-foreground hover:bg-muted/80"
                       }`}
+                      aria-pressed={selectedOptions[option.name] === value}
+                      aria-label={`Select ${value}`}
                     >
                       {value}
                     </button>
@@ -168,19 +172,21 @@ export function ShopifyProductMain({ product }: ShopifyProductMainProps) {
               <p className="text-sm font-medium text-foreground mb-3">Quantity</p>
               <div className="flex items-center gap-4">
                 <div className="flex items-center border border-border rounded-full">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 h-10 flex items-center justify-center text-foreground hover:bg-muted rounded-l-full transition-colors"
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <span className="w-12 text-center font-medium">{quantity}</span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="w-10 h-10 flex items-center justify-center text-foreground hover:bg-muted rounded-r-full transition-colors"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
+                    <button
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="w-10 h-10 flex items-center justify-center text-foreground hover:bg-muted rounded-l-full transition-colors"
+                      aria-label="Decrease quantity"
+                    >
+                      <Minus className="w-4 h-4" aria-hidden="true" />
+                    </button>
+                    <span className="w-12 text-center font-medium" aria-live="polite">{quantity}</span>
+                    <button
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="w-10 h-10 flex items-center justify-center text-foreground hover:bg-muted rounded-r-full transition-colors"
+                      aria-label="Increase quantity"
+                    >
+                      <Plus className="w-4 h-4" aria-hidden="true" />
+                    </button>
                 </div>
               </div>
             </div>
@@ -203,8 +209,8 @@ export function ShopifyProductMain({ product }: ShopifyProductMainProps) {
                   "Out of Stock"
                 )}
               </button>
-              <button className="w-12 h-12 flex items-center justify-center rounded-full border border-border hover:bg-muted transition-colors">
-                <Heart className="w-5 h-5 text-foreground" />
+              <button className="w-12 h-12 flex items-center justify-center rounded-full border border-border hover:bg-muted transition-colors" aria-label="Add to wishlist">
+                <Heart className="w-5 h-5 text-foreground" aria-hidden="true" />
               </button>
             </div>
 

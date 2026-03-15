@@ -5,6 +5,7 @@ import { TopBanner } from "@/components/pet-haven/top-banner"
 import { Header } from "@/components/pet-haven/header"
 import { PrimaryNav } from "@/components/pet-haven/primary-nav"
 import { SecondaryNav } from "@/components/pet-haven/secondary-nav"
+import { PromoBanner } from "@/components/pet-haven/promo-banner"
 import { Footer } from "@/components/pet-haven/footer"
 import { ShopifyProductCard } from "@/components/pet-haven/shopify-product-card"
 import { getCollectionProducts, getProducts } from "@/lib/actions"
@@ -98,11 +99,12 @@ export default async function CollectionPage({
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <main id="main-content" className="min-h-screen bg-background" role="main">
       <TopBanner />
       <Header />
       <PrimaryNav />
       <SecondaryNav />
+      <PromoBanner />
 
       <section className="w-full bg-background py-8 md:py-12">
         <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">

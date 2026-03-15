@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export function VideoHero() {
   return (
-    <section className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden">
+    <section className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden" aria-labelledby="hero-heading">
       {/* Video Background */}
       <video
         autoPlay
@@ -13,6 +13,7 @@ export function VideoHero() {
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
+        aria-hidden="true"
       >
         <source
           src="https://videos.pexels.com/video-files/4825032/4825032-uhd_2560_1440_25fps.mp4"
@@ -35,12 +36,14 @@ export function VideoHero() {
           <Link
             href="/collections/dogs"
             className="rounded-full bg-primary px-6 md:px-8 py-2.5 md:py-3 text-sm font-medium text-white hover:bg-primary-hover transition-colors text-center"
+            aria-label="Shop dog products"
           >
             Shop Dog Products
           </Link>
           <Link
             href="/collections/cats"
             className="rounded-full bg-white px-6 md:px-8 py-2.5 md:py-3 text-sm font-medium text-primary hover:bg-white/90 transition-colors text-center"
+            aria-label="Shop cat products"
           >
             Shop Cat Products
           </Link>

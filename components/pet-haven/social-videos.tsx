@@ -36,12 +36,12 @@ function TikTokIcon({ className }: { className?: string }) {
 
 export function SocialVideos() {
   return (
-    <section className="w-full bg-white py-12 md:py-20">
+    <section className="w-full bg-white py-12 md:py-20" aria-labelledby="social-heading">
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
         {/* Header Card - same format as Cat section */}
         <div className="relative rounded-2xl md:rounded-3xl bg-card overflow-hidden mb-6 md:mb-8 min-h-[160px] md:min-h-[200px] flex items-center shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
           <div className="relative z-10 p-6 md:p-12 max-w-[60%] md:max-w-md">
-            <h2 className="text-2xl md:text-4xl font-extrabold text-foreground mb-2 md:mb-4">
+            <h2 id="social-heading" className="text-2xl md:text-4xl font-extrabold text-foreground mb-2 md:mb-4">
               Follow Us
             </h2>
             <p className="text-sm md:text-base text-muted-foreground mb-4">

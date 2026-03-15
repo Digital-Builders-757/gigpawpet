@@ -2,7 +2,11 @@
  * Async functions that call each query via the Shopify Storefront API client
  */
 
+import { cache } from 'react'
+import { unstable_cache } from 'next/cache'
 import { shopifyClient } from './shopify'
+
+const SHOPIFY_CACHE_REVALIDATE = 120 // 2 minutes
 import {
   getProductsQuery,
   getProductByHandleQuery,
@@ -19,89 +23,105 @@ import { normalizeProduct, normalizeProducts, normalizeCart } from './normalize'
 import type { ShopifyProduct, ShopifyCart } from '@/types/shopify'
 import type { Product, Cart } from '@/types/shopify'
 
-export async function getProducts(options?: {
+export const getProducts = cache(async (options?: {
   first?: number
   sortKey?: string
   reverse?: boolean
   query?: string
-}): Promise<Product[]> {
-  const variables: Record<string, unknown> = {
-    first: options?.first ?? 12,
-    sortKey: options?.sortKey ?? 'CREATED_AT',
-    reverse: options?.reverse ?? false,
-  }
-  if (options?.query) {
-    variables.query = options.query
-  }
+}): Promise<Product[]> => {
+  const first = options?.first ?? 12
+  const sortKey = options?.sortKey ?? 'CREATED_AT'
+  const reverse = options?.reverse ?? false
+  const query = options?.query ?? ''
 
-  const { data, errors } = await shopifyClient.request<{
-    products: { edges: Array<{ node: ShopifyProduct }> }
-  }>(getProductsQuery, {
-    variables,
-  })
+  return unstable_cache(
+    async () => {
+      const variables: Record<string, unknown> = { first, sortKey, reverse }
+      if (query) variables.query = query
 
-  if (errors?.graphQLErrors?.length) {
-    throw new Error(errors.message ?? 'Failed to fetch products')
-  }
+      const { data, errors } = await shopifyClient.request<{
+        products: { edges: Array<{ node: ShopifyProduct }> }
+      }>(getProductsQuery, { variables })
 
-  const products = data?.products?.edges?.map((e) => e.node) ?? []
-  return normalizeProducts(products)
-}
+      if (errors?.graphQLErrors?.length) {
+        throw new Error(errors.message ?? 'Failed to fetch products')
+      }
 
-export async function getProductByHandle(handle: string): Promise<Product | null> {
-  const { data, errors } = await shopifyClient.request<{
-    product: ShopifyProduct | null
-  }>(getProductByHandleQuery, {
-    variables: { handle },
-  })
+      const products = data?.products?.edges?.map((e) => e.node) ?? []
+      return normalizeProducts(products)
+    },
+    ['products', String(first), sortKey, String(reverse), query],
+    { revalidate: SHOPIFY_CACHE_REVALIDATE }
+  )()
+})
 
-  if (errors?.graphQLErrors?.length) {
-    throw new Error(errors.message ?? 'Failed to fetch product')
-  }
+export const getProductByHandle = cache(async (handle: string): Promise<Product | null> => {
+  return unstable_cache(
+    async () => {
+      const { data, errors } = await shopifyClient.request<{
+        product: ShopifyProduct | null
+      }>(getProductByHandleQuery, { variables: { handle } })
 
-  const product = data?.product
-  return product ? normalizeProduct(product) : null
-}
+      if (errors?.graphQLErrors?.length) {
+        throw new Error(errors.message ?? 'Failed to fetch product')
+      }
 
-export async function getCollectionProducts(
+      const product = data?.product
+      return product ? normalizeProduct(product) : null
+    },
+    ['product', handle],
+    { revalidate: SHOPIFY_CACHE_REVALIDATE }
+  )()
+})
+
+export const getCollectionProducts = cache(async (
   handle: string,
   options?: { first?: number; sortKey?: string; reverse?: boolean }
-): Promise<Product[]> {
-  const { data, errors } = await shopifyClient.request<{
-    collection: {
-      products: { edges: Array<{ node: ShopifyProduct }> }
-    } | null
-  }>(getCollectionProductsQuery, {
-    variables: {
-      handle,
-      first: options?.first ?? 12,
-      sortKey: options?.sortKey ?? 'BEST_SELLING',
-      reverse: options?.reverse ?? false,
+): Promise<Product[]> => {
+  const first = options?.first ?? 12
+  const sortKey = options?.sortKey ?? 'BEST_SELLING'
+  const reverse = options?.reverse ?? false
+
+  return unstable_cache(
+    async () => {
+      const { data, errors } = await shopifyClient.request<{
+        collection: {
+          products: { edges: Array<{ node: ShopifyProduct }> }
+        } | null
+      }>(getCollectionProductsQuery, {
+        variables: { handle, first, sortKey, reverse },
+      })
+
+      if (errors?.graphQLErrors?.length) {
+        throw new Error(errors.message ?? 'Failed to fetch collection products')
+      }
+
+      const products = data?.collection?.products?.edges?.map((e) => e.node) ?? []
+      return normalizeProducts(products)
     },
-  })
+    ['collection', handle, String(first), sortKey, String(reverse)],
+    { revalidate: SHOPIFY_CACHE_REVALIDATE }
+  )()
+})
 
-  if (errors?.graphQLErrors?.length) {
-    throw new Error(errors.message ?? 'Failed to fetch collection products')
-  }
+export const getNewArrivals = cache(async (first: number = 8): Promise<Product[]> => {
+  return unstable_cache(
+    async () => {
+      const { data, errors } = await shopifyClient.request<{
+        products: { edges: Array<{ node: ShopifyProduct }> }
+      }>(getNewArrivalsQuery, { variables: { first } })
 
-  const products = data?.collection?.products?.edges?.map((e) => e.node) ?? []
-  return normalizeProducts(products)
-}
+      if (errors?.graphQLErrors?.length) {
+        throw new Error(errors.message ?? 'Failed to fetch new arrivals')
+      }
 
-export async function getNewArrivals(first: number = 8): Promise<Product[]> {
-  const { data, errors } = await shopifyClient.request<{
-    products: { edges: Array<{ node: ShopifyProduct }> }
-  }>(getNewArrivalsQuery, {
-    variables: { first },
-  })
-
-  if (errors?.graphQLErrors?.length) {
-    throw new Error(errors.message ?? 'Failed to fetch new arrivals')
-  }
-
-  const products = data?.products?.edges?.map((e) => e.node) ?? []
-  return normalizeProducts(products)
-}
+      const products = data?.products?.edges?.map((e) => e.node) ?? []
+      return normalizeProducts(products)
+    },
+    ['new-arrivals', String(first)],
+    { revalidate: SHOPIFY_CACHE_REVALIDATE }
+  )()
+})
 
 // TODO: verify if used - not currently imported anywhere
 export async function getBestSellers(first: number = 8): Promise<Product[]> {

@@ -1,19 +1,15 @@
-import { getNewArrivals } from "@/lib/actions"
 import { ShopifyProductCard } from "./shopify-product-card"
+import type { Product } from "@/types/shopify"
 
-export async function ShopifyNewArrivals() {
-  let products = []
-  
-  try {
-    products = await getNewArrivals(5)
-  } catch (error) {
-    console.error("Error fetching products:", error)
-  }
+interface ShopifyNewArrivalsProps {
+  products: Product[]
+}
 
+export function ShopifyNewArrivals({ products }: ShopifyNewArrivalsProps) {
   return (
-    <section className="w-full bg-white py-12 md:py-20">
+    <section className="w-full bg-white py-12 md:py-20" aria-labelledby="new-arrivals-heading">
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-8">
+        <h2 id="new-arrivals-heading" className="text-3xl md:text-4xl font-extrabold text-foreground mb-8">
           New Arrivals
         </h2>
         

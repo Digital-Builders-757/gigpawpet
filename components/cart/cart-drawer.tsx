@@ -71,6 +71,7 @@ export function CartDrawer() {
                               size="icon"
                               className="h-8 w-8 rounded-r-none"
                               disabled={updatingLineId === line.id}
+                              aria-label="Decrease quantity"
                               onClick={async () => {
                                 setUpdatingLineId(line.id)
                                 try {
@@ -97,6 +98,7 @@ export function CartDrawer() {
                               size="icon"
                               className="h-8 w-8 rounded-l-none"
                               disabled={updatingLineId === line.id}
+                              aria-label="Increase quantity"
                               onClick={async () => {
                                 setUpdatingLineId(line.id)
                                 try {

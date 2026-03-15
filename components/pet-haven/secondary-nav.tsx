@@ -9,7 +9,7 @@ const navLinks = [
 
 export function SecondaryNav() {
   return (
-    <nav className="hidden md:block w-full bg-card border-b border-border py-3">
+    <nav className="hidden md:block w-full bg-card border-b border-border py-3" aria-label="Main navigation">
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20 flex items-center justify-center gap-6 md:gap-8 flex-wrap">
         {navLinks.map((link) => (
           <a

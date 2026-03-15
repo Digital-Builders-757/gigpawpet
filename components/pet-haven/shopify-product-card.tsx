@@ -67,6 +67,7 @@ export function ShopifyProductCard({ product, ctaBackgroundColor, priority }: Sh
         disabled={isPending || !variant}
         className={`w-full rounded-full py-2 md:py-2.5 text-xs md:text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${ctaBackgroundColor ? 'text-foreground' : 'bg-primary text-white hover:bg-primary-hover'}`}
         style={ctaBackgroundColor ? { backgroundColor: ctaBackgroundColor } : undefined}
+        aria-label={isPending ? "Adding to cart" : `Add ${product.title} to cart`}
       >
         {isPending ? (
           <>

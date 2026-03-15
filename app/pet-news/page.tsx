@@ -5,9 +5,8 @@ import { TopBanner } from "@/components/pet-haven/top-banner"
 import { Header } from "@/components/pet-haven/header"
 import { PrimaryNav } from "@/components/pet-haven/primary-nav"
 import { SecondaryNav } from "@/components/pet-haven/secondary-nav"
+import { PromoBanner } from "@/components/pet-haven/promo-banner"
 import { Footer } from "@/components/pet-haven/footer"
-import { ShopifyProductCard } from "@/components/pet-haven/shopify-product-card"
-import { getCollectionProducts, getProducts } from "@/lib/actions"
 
 export const metadata: Metadata = {
   title: "Pet News | Giggling Paws & Pets",
@@ -42,26 +41,14 @@ const BLOG_POSTS = [
   },
 ]
 
-export default async function PetNewsPage() {
-  let products: Awaited<ReturnType<typeof getProducts>> = []
-  try {
-    products = await getCollectionProducts("seasonal-products", { first: 100 })
-    if (products.length === 0) {
-      products = await getCollectionProducts("seasonal", { first: 100 })
-    }
-    if (products.length === 0) {
-      products = await getProducts({ first: 100 })
-    }
-  } catch (error) {
-    console.error("Error fetching products:", error)
-  }
-
+export default function PetNewsPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main id="main-content" className="min-h-screen bg-background" role="main">
       <TopBanner />
       <Header />
       <PrimaryNav />
       <SecondaryNav />
+      <PromoBanner />
 
       <section className="w-full bg-background py-8 md:py-12">
         <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
@@ -129,28 +116,6 @@ export default async function PetNewsPage() {
               </Link>
             </div>
           </div>
-
-          {/* Products Grid */}
-          {products.length > 0 && (
-            <>
-              <h2 className="text-xl md:text-2xl font-extrabold text-foreground mb-6">
-                Seasonal Products
-              </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                {products.slice(0, 10).map((product) => (
-                  <ShopifyProductCard key={product.id} product={product} />
-                ))}
-              </div>
-              <div className="mt-8 text-center">
-                <Link
-                  href="/collections/seasonal"
-                  className="text-primary font-medium hover:underline"
-                >
-                  View all seasonal products →
-                </Link>
-              </div>
-            </>
-          )}
         </div>
       </section>
 

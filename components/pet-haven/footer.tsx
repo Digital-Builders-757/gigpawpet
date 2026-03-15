@@ -24,7 +24,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="w-full bg-navy py-16">
+    <footer className="w-full bg-navy py-16" role="contentinfo">
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
           {/* Logo & Description */}
@@ -38,7 +38,7 @@ export function Footer() {
           </div>
 
           {/* Shop */}
-          <div>
+          <nav aria-label="Shop links">
             <h4 className="text-white font-semibold mb-4">Shop</h4>
             <ul className="space-y-2">
               {footerLinks.shop.map((link) => (
@@ -56,10 +56,10 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Information */}
-          <div>
+          <nav aria-label="Information links">
             <h4 className="text-white font-semibold mb-4">Information</h4>
             <ul className="space-y-2">
               {footerLinks.information.map((link) => (
@@ -77,10 +77,10 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Help */}
-          <div>
+          <nav aria-label="Help links">
             <h4 className="text-white font-semibold mb-4">Help</h4>
             <ul className="space-y-2">
               {footerLinks.help.map((link) => (
@@ -98,10 +98,10 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Follow Us */}
-          <div>
+          <nav aria-label="Social media links">
             <h4 className="text-white font-semibold mb-4">Follow Us</h4>
             <ul className="space-y-2">
               {footerLinks.social.map((link) => (
@@ -111,13 +111,14 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white/70 text-sm hover:text-white transition-colors"
+                    aria-label={`Follow us on ${link.label}`}
                   >
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom Bar */}

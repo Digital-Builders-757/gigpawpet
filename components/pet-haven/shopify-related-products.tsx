@@ -9,10 +9,10 @@ export function ShopifyRelatedProducts({ products }: ShopifyRelatedProductsProps
   if (products.length === 0) return null
 
   return (
-    <section className="w-full bg-light-blue py-12 md:py-16">
+    <section className="w-full bg-light-blue py-12 md:py-16" aria-labelledby="related-products-heading">
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-foreground">
+          <h2 id="related-products-heading" className="text-2xl md:text-3xl font-extrabold text-foreground">
             You Might Also Like
           </h2>
         </div>
