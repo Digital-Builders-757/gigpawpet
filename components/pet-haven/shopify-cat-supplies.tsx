@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { ShopifyProductCard } from "./shopify-product-card"
 import type { Product } from "@/types/shopify"
 
@@ -48,6 +49,16 @@ export function ShopifyCatSupplies({ products }: ShopifyCatSuppliesProps) {
             <p>No cat products available. Add a "cats" collection in your Shopify store.</p>
           </div>
         )}
+
+        <div className="mt-[100px] text-center">
+          <Link
+            href="/collections/cats"
+            className="inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
+            aria-label="View all cat supplies"
+          >
+            Shop All Cat Supplies
+          </Link>
+        </div>
       </div>
     </section>
   )
