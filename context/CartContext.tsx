@@ -81,6 +81,7 @@ async function updateCartLineApi(
   })
   const json = await res.json()
   if (!res.ok) throw new Error(json.error ?? 'Failed to update cart')
+  if (!json.cart) throw new Error('No cart returned from update')
   return json.cart
 }
 
@@ -99,6 +100,7 @@ async function removeFromCartApi(
   })
   const json = await res.json()
   if (!res.ok) throw new Error(json.error ?? 'Failed to remove from cart')
+  if (!json.cart) throw new Error('No cart returned from remove')
   return json.cart
 }
 
@@ -171,14 +173,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     async (lineId: string) => {
       if (!cart) return
 
-      startTransition(async () => {
-        try {
-          const updatedCart = await removeFromCartApi(cart.id, lineId)
-          setCart(updatedCart)
-        } catch (error) {
-          console.error('Failed to remove from cart:', error)
-        }
-      })
+      try {
+        const updatedCart = await removeFromCartApi(cart.id, lineId)
+        setCart(updatedCart)
+      } catch (error) {
+        console.error('Failed to remove from cart:', error)
+        throw error
+      }
     },
     [cart]
   )
@@ -187,18 +188,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
     async (lineId: string, quantity: number) => {
       if (!cart) return
 
-      startTransition(async () => {
-        try {
-          const updatedCart = await updateCartLineApi(
-            cart.id,
-            lineId,
-            quantity
-          )
-          setCart(updatedCart)
-        } catch (error) {
-          console.error('Failed to update cart:', error)
-        }
-      })
+      try {
+        const updatedCart = await updateCartLineApi(
+          cart.id,
+          lineId,
+          quantity
+        )
+        setCart(updatedCart)
+      } catch (error) {
+        console.error('Failed to update cart:', error)
+        throw error
+      }
     },
     [cart]
   )

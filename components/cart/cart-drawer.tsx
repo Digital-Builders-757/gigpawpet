@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Minus, Plus, Trash2 } from 'lucide-react'
+import { toast } from 'sonner'
 import { useCart } from '@/context/CartContext'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
@@ -10,6 +12,7 @@ import { formatPrice } from '@/lib/normalize'
 
 export function CartDrawer() {
   const { cart, cartOpen, closeCart, removeItem, updateItem } = useCart()
+  const [updatingLineId, setUpdatingLineId] = useState<string | null>(null)
 
   return (
     <Sheet open={cartOpen} onOpenChange={(open) => !open && closeCart()}>
@@ -67,11 +70,20 @@ export function CartDrawer() {
                               variant="ghost"
                               size="icon"
                               className="h-8 w-8 rounded-r-none"
-                              onClick={() => {
-                                if (line.quantity <= 1) {
-                                  removeItem(line.id)
-                                } else {
-                                  updateItem(line.id, line.quantity - 1)
+                              disabled={updatingLineId === line.id}
+                              onClick={async () => {
+                                setUpdatingLineId(line.id)
+                                try {
+                                  if (line.quantity <= 1) {
+                                    await removeItem(line.id)
+                                    toast.success('Item removed')
+                                  } else {
+                                    await updateItem(line.id, line.quantity - 1)
+                                  }
+                                } catch {
+                                  toast.error('Failed to update cart')
+                                } finally {
+                                  setUpdatingLineId(null)
                                 }
                               }}
                             >
@@ -84,9 +96,17 @@ export function CartDrawer() {
                               variant="ghost"
                               size="icon"
                               className="h-8 w-8 rounded-l-none"
-                              onClick={() =>
-                                updateItem(line.id, line.quantity + 1)
-                              }
+                              disabled={updatingLineId === line.id}
+                              onClick={async () => {
+                                setUpdatingLineId(line.id)
+                                try {
+                                  await updateItem(line.id, line.quantity + 1)
+                                } catch {
+                                  toast.error('Failed to update cart')
+                                } finally {
+                                  setUpdatingLineId(null)
+                                }
+                              }}
                             >
                               <Plus className="h-4 w-4" />
                             </Button>
@@ -95,7 +115,18 @@ export function CartDrawer() {
                             variant="ghost"
                             size="icon"
                             className="h-8 w-8 text-destructive hover:text-destructive"
-                            onClick={() => removeItem(line.id)}
+                            disabled={updatingLineId === line.id}
+                            onClick={async () => {
+                              setUpdatingLineId(line.id)
+                              try {
+                                await removeItem(line.id)
+                                toast.success('Item removed')
+                              } catch {
+                                toast.error('Failed to remove item')
+                              } finally {
+                                setUpdatingLineId(null)
+                              }
+                            }}
                             aria-label="Remove item"
                           >
                             <Trash2 className="h-4 w-4" />
