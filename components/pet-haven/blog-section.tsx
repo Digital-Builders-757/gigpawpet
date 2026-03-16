@@ -69,7 +69,7 @@ export function BlogSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Large Featured Card */}
-          <div className="border border-border rounded-2xl md:rounded-3xl p-5 md:p-8 flex flex-col">
+          <div className="rounded-2xl md:rounded-3xl p-5 md:p-8 flex flex-col shadow-md">
             <div className="aspect-video relative rounded-xl md:rounded-2xl overflow-hidden mb-4 md:mb-6">
               <Image
                 src="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=600&h=338&fit=crop"
@@ -88,7 +88,7 @@ export function BlogSection() {
             <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4 flex-1">
               Learn what is driving the growth of the pet industry...
             </p>
-            <a href="#" className="text-primary underline hover:no-underline text-sm font-medium">
+            <a href="#" className="w-full rounded-full py-2 md:py-2.5 text-xs md:text-sm font-medium bg-primary text-white hover:bg-primary-hover hover:opacity-90 transition-opacity flex items-center justify-center">
               Read more
             </a>
           </div>
@@ -98,7 +98,7 @@ export function BlogSection() {
             {smallArticles.map((article) => (
               <div
                 key={article.title}
-                className="bg-light-blue rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col"
+                className="bg-light-blue rounded-xl md:rounded-2xl p-3 md:p-4 flex flex-col shadow-md"
               >
                 <div className="aspect-video relative rounded-lg md:rounded-xl overflow-hidden mb-3 md:mb-4">
                   <Image
@@ -118,7 +118,7 @@ export function BlogSection() {
                 <p className="hidden md:block text-sm text-muted-foreground line-clamp-2 mb-3 flex-1">
                   {article.excerpt}
                 </p>
-                <a href="#" className="text-primary underline hover:no-underline text-xs md:text-sm font-medium">
+                <a href="#" className="w-full rounded-full py-2 md:py-2.5 text-xs md:text-sm font-medium bg-primary text-white hover:bg-primary-hover hover:opacity-90 transition-opacity flex items-center justify-center">
                   Read more
                 </a>
               </div>

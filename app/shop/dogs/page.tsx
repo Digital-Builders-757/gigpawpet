@@ -2,7 +2,6 @@ import { TopBanner } from "@/components/pet-haven/top-banner"
 import { Header } from "@/components/pet-haven/header"
 import { PrimaryNav } from "@/components/pet-haven/primary-nav"
 import { SecondaryNav } from "@/components/pet-haven/secondary-nav"
-import { PromoBanner } from "@/components/pet-haven/promo-banner"
 import { Footer } from "@/components/pet-haven/footer"
 import { ShopifyDogSupplies } from "@/components/pet-haven/shopify-dog-supplies"
 import { getCollectionProducts, getProducts } from "@/lib/actions"
@@ -19,7 +18,6 @@ export default async function ShopDogsPage() {
       <Header />
       <PrimaryNav />
       <SecondaryNav />
-      <PromoBanner />
       <ShopifyDogSupplies products={products} />
       <Footer />
     </main>

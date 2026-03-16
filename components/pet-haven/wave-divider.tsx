@@ -1,5 +1,7 @@
 "use client"
 
+import { useId } from "react"
+
 /**
  * Unique wave path definitions. Each produces a distinct shape.
  * viewBox 0 0 1200 100 - paths span full width, height ~100 for curves.
@@ -35,6 +37,10 @@ export interface WaveDividerProps {
   duration: number
   /** Optional className */
   className?: string
+  /** When true and variant is bottom, wave extends below parent (no extra padding needed) */
+  extendBelow?: boolean
+  /** When true, flip the wave upside down */
+  flipVertical?: boolean
 }
 
 export function WaveDivider({
@@ -44,11 +50,12 @@ export function WaveDivider({
   direction,
   duration,
   className = "",
+  extendBelow = false,
+  flipVertical = false,
 }: WaveDividerProps) {
+  const filterId = `wave-shadow-${useId().replace(/:/g, "")}`
   const pathData = WAVE_PATHS[shapeId]
   if (!pathData) return null
-
-  const driftClass = direction === "left" ? "animate-wave-drift-left" : "animate-wave-drift-right"
 
   // Paths with curve at top (L1200,100 L0,100 Z) are for bottom waves.
   // For top waves we flip them so the curve is at bottom (wave dips down).
@@ -57,12 +64,16 @@ export function WaveDivider({
     variant === "top" &&
     shapeId !== "dogSuppliesTop"
 
+  const isBottom = variant === "bottom"
+  const positionStyle = extendBelow && isBottom
+    ? { top: "100%", height: "80px" as const }
+    : { [isBottom ? "bottom" : "top"]: 0, height: "80px" as const }
+
   return (
     <div
-      className={`absolute left-0 right-0 w-full overflow-hidden pointer-events-none ${className}`}
+      className={`absolute left-0 right-0 w-full overflow-visible pointer-events-none ${className}`}
       style={{
-        [variant === "top" ? "top" : "bottom"]: 0,
-        height: "80px",
+        ...positionStyle,
         lineHeight: 0,
       }}
     >
@@ -70,16 +81,25 @@ export function WaveDivider({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1200 100"
         preserveAspectRatio="none"
-        className={`block w-full h-full ${driftClass}`}
-        style={{
-          animationDuration: `${duration}s`,
-        }}
+        className="block w-full h-full"
         aria-hidden="true"
       >
+        <defs>
+          <filter id={filterId} x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="rgba(0,0,0,0.15)" />
+          </filter>
+        </defs>
         <path
           d={pathData}
           fill={fill}
-          transform={needsFlip ? "scale(1, -1) translate(0, 100)" : undefined}
+          filter={`url(#${filterId})`}
+          transform={
+            needsFlip
+              ? "scale(1, -1) translate(0, 100)"
+              : flipVertical
+                ? "scale(1, -1) translate(0, 100)"
+                : undefined
+          }
         />
       </svg>
     </div>

@@ -19,6 +19,11 @@ const tiktokVideos = [
     id: "3",
     videoId: "7576981301400456478",
     title: "Happy pets"
+  },
+  {
+    id: "4",
+    videoId: "7584161198321569054",
+    title: "Adorable pets"
   }
 ]
 
@@ -93,13 +98,13 @@ export function SocialVideos() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {tiktokVideos.map((video) => (
             <div 
               key={video.id}
               className="relative bg-white rounded-xl overflow-hidden flex justify-center"
             >
-              <div className="w-full max-w-[280px] mx-auto aspect-[9/16] sm:aspect-auto sm:h-[350px]">
+              <div className="w-full aspect-[9/16] sm:aspect-auto sm:h-[350px]">
                 <iframe
                   src={`https://www.tiktok.com/player/v1/${video.videoId}?controls=0&progress_bar=0&volume_control=0&fullscreen_button=0&timestamp=0&music_info=0&description=0&closed_caption=0&rel=0`}
                   className="w-full h-full border-0"

@@ -3,7 +3,6 @@ import { notFound } from "next/navigation"
 import { TopBanner } from "@/components/pet-haven/top-banner"
 import { Header } from "@/components/pet-haven/header"
 import { SecondaryNav } from "@/components/pet-haven/secondary-nav"
-import { PromoBanner } from "@/components/pet-haven/promo-banner"
 import { ShopifyProductMain } from "@/components/pet-haven/shopify-product-main"
 import { ProductDetails } from "@/components/pet-haven/product-details"
 import { ShopifyRelatedProducts } from "@/components/pet-haven/shopify-related-products"
@@ -58,7 +57,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <TopBanner />
       <Header />
       <SecondaryNav />
-      <PromoBanner />
       <ShopifyProductMain product={product} />
       <ProductDetails />
       <ShopifyRelatedProducts products={relatedProducts} />

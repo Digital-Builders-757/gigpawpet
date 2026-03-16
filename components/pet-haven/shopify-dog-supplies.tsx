@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ShopifyProductCard } from "./shopify-product-card"
 import { WaveDivider } from "./wave-divider"
+import { PawPattern } from "./paw-pattern"
 import type { Product } from "@/types/shopify"
 
 interface ShopifyDogSuppliesProps {
@@ -13,10 +14,11 @@ const LIGHT_BLUE = "#e8f4fc"
 export function ShopifyDogSupplies({ products }: ShopifyDogSuppliesProps) {
   return (
     <section
-      className="relative w-full py-12 md:py-20 pt-24 md:pt-28 pb-24 md:pb-28"
+      className="relative w-full py-12 md:py-20 pt-24 md:pt-28 pb-24 md:pb-28 overflow-hidden"
       style={{ backgroundColor: LIGHT_BLUE }}
       aria-labelledby="dog-supplies-heading"
     >
+      <PawPattern />
       <WaveDivider fill="#ffffff" variant="top" shapeId="dogSuppliesTop" direction="right" duration={6} />
       <WaveDivider fill="#ffffff" variant="bottom" shapeId="transitionCream" direction="left" duration={7} />
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20 relative z-10">

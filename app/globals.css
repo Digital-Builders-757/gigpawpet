@@ -5,20 +5,20 @@
 
 :root {
   --background: #f9f9fa;
-  --foreground: #1A1F36;
+  --foreground: #2e86b5;
   --card: #ffffff;
-  --card-foreground: #1A1F36;
+  --card-foreground: #2e86b5;
   --popover: #ffffff;
-  --popover-foreground: #1A1F36;
+  --popover-foreground: #2e86b5;
   --primary: #2e86b5;
   --primary-hover: #26729a;
   --primary-foreground: #ffffff;
   --secondary: #E8F4FC;
-  --secondary-foreground: #1A1F36;
+  --secondary-foreground: #2e86b5;
   --muted: #f9f9fa;
   --muted-foreground: #666666;
   --accent: #E8F4FC;
-  --accent-foreground: #1A1F36;
+  --accent-foreground: #2e86b5;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: rgba(0,0,0,0.1);
@@ -30,7 +30,7 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 1.5rem;
-  --navy: #1A1F36;
+  --navy: #2e86b5;
   --gray-text: #666666;
   --light-blue: #E8F4FC;
   --sidebar: oklch(0.985 0 0);

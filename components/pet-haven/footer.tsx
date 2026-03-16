@@ -28,7 +28,7 @@ export function Footer() {
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
           {/* Logo & Description */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-1">
+          <div className="col-span-2 md:col-span-3 lg:col-span-1 text-left">
             <h3 className="text-2xl font-extrabold text-white mb-4">
               Giggling Paws & Pets
             </h3>
@@ -38,7 +38,7 @@ export function Footer() {
           </div>
 
           {/* Shop */}
-          <nav aria-label="Shop links">
+          <nav aria-label="Shop links" className="text-right">
             <h4 className="text-white font-semibold mb-4">Shop</h4>
             <ul className="space-y-2">
               {footerLinks.shop.map((link) => (
@@ -59,7 +59,7 @@ export function Footer() {
           </nav>
 
           {/* Information */}
-          <nav aria-label="Information links">
+          <nav aria-label="Information links" className="text-right">
             <h4 className="text-white font-semibold mb-4">Information</h4>
             <ul className="space-y-2">
               {footerLinks.information.map((link) => (
@@ -80,7 +80,7 @@ export function Footer() {
           </nav>
 
           {/* Help */}
-          <nav aria-label="Help links">
+          <nav aria-label="Help links" className="text-right">
             <h4 className="text-white font-semibold mb-4">Help</h4>
             <ul className="space-y-2">
               {footerLinks.help.map((link) => (
@@ -101,7 +101,7 @@ export function Footer() {
           </nav>
 
           {/* Follow Us */}
-          <nav aria-label="Social media links">
+          <nav aria-label="Social media links" className="text-right">
             <h4 className="text-white font-semibold mb-4">Follow Us</h4>
             <ul className="space-y-2">
               {footerLinks.social.map((link) => (
@@ -122,7 +122,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/60 text-sm">
             © 2024 Giggling Paws & Pets. All rights reserved.
           </p>

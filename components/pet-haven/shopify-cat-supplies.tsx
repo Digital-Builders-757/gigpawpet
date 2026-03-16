@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ShopifyProductCard } from "./shopify-product-card"
 import { WaveDivider } from "./wave-divider"
+import { PawPattern } from "./paw-pattern"
 import type { Product } from "@/types/shopify"
 
 interface ShopifyCatSuppliesProps {
@@ -13,10 +14,11 @@ const LIGHT_BLUE = "#e8f4fc"
 export function ShopifyCatSupplies({ products }: ShopifyCatSuppliesProps) {
   return (
     <section
-      className="relative w-full py-12 md:py-20 pt-24 md:pt-28 pb-24 md:pb-28"
+      className="relative w-full py-12 md:py-20 pt-24 md:pt-28 pb-24 md:pb-28 overflow-visible"
       style={{ backgroundColor: LIGHT_BLUE }}
       aria-labelledby="cat-supplies-heading"
     >
+      <PawPattern />
       <WaveDivider fill={LIGHT_BLUE} variant="top" shapeId="transitionPeach" direction="right" duration={8} />
       <WaveDivider fill="#ffffff" variant="bottom" shapeId="catSuppliesBottom" direction="right" duration={5} />
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20 relative z-10">

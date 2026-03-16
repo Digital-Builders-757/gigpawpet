@@ -1,7 +1,6 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import Link from "next/link"
 import dynamic from "next/dynamic"
 import { WaveDivider } from "./wave-divider"
 
@@ -12,7 +11,7 @@ const HeroParticles = dynamic(
 
 const HERO_VIDEOS = ["/hero-pets.mp4", "/hero-cat-shelf.mp4"]
 
-export function VideoHero() {
+export function VideoHero({ className = "" }: { className?: string }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
 
@@ -42,7 +41,7 @@ export function VideoHero() {
 
   return (
     <section
-      className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden"
+      className={`relative w-full overflow-hidden ${className}`}
       aria-labelledby="hero-heading"
     >
       {/* Hero Videos - play sequentially, both preloaded */}
@@ -70,36 +69,6 @@ export function VideoHero() {
 
       {/* Floating light particles animation */}
       <HeroParticles />
-
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
-        <h2
-          id="hero-heading"
-          className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-3 md:mb-4 text-balance drop-shadow-lg"
-        >
-          Happy Pets, Happy Life
-        </h2>
-        <p className="text-sm sm:text-base md:text-xl text-white/95 max-w-2xl mb-6 md:mb-8 px-4 drop-shadow-md">
-          Watch our furry friends play and discover products that bring joy to
-          their everyday adventures.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto px-4 sm:px-0">
-          <Link
-            href="/collections/dogs"
-            className="rounded-full bg-primary px-6 md:px-8 py-2.5 md:py-3 text-sm font-medium text-white hover:bg-primary-hover transition-colors text-center"
-            aria-label="Shop dog products"
-          >
-            Shop Dog Products
-          </Link>
-          <Link
-            href="/collections/cats"
-            className="rounded-full bg-white px-6 md:px-8 py-2.5 md:py-3 text-sm font-medium text-primary hover:bg-white/90 transition-colors text-center"
-            aria-label="Shop cat products"
-          >
-            Shop Cat Products
-          </Link>
-        </div>
-      </div>
     </section>
   )
 }
