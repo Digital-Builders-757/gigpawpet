@@ -1,13 +1,19 @@
 "use client"
 
+import { WaveDivider } from "./wave-divider"
+
+const FOOTER_BLUE = "#2e86b5"
+
 export function EmailCapture() {
   return (
-    <section className="w-full bg-primary py-12 md:py-20">
-      <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20 text-center">
-        <h2 className="text-2xl md:text-[2rem] font-extrabold tracking-[-0.03em] mb-3 md:mb-4" style={{ color: 'white' }}>
+    <section className="relative w-full py-12 md:py-20 pt-24 md:pt-28 pb-32 md:pb-40" style={{ backgroundColor: "#e6f4fc" }}>
+      <WaveDivider fill="#e6f4fc" variant="top" shapeId="transitionSage" direction="left" duration={6} />
+      <WaveDivider fill={FOOTER_BLUE} variant="bottom" shapeId="newsletterBottom" direction="left" duration={9} />
+      <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20 text-center relative z-10">
+        <h2 className="text-2xl md:text-[2rem] font-extrabold tracking-[-0.03em] mb-3 md:mb-4 text-foreground">
           Subscribe To Our Newsletter
         </h2>
-        <p className="text-sm md:text-base text-white/90 mb-6 md:mb-8 max-w-md mx-auto">
+        <p className="text-sm md:text-base text-muted-foreground mb-6 md:mb-8 max-w-md mx-auto">
           Sign up for exclusive updates, new arrivals & insider-only discounts.
         </p>
         

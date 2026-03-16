@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { WaveDivider } from "./wave-divider"
 
 const smallArticles = [
   {
@@ -33,8 +34,13 @@ const smallArticles = [
 
 export function BlogSection() {
   return (
-    <section className="w-full bg-white py-12 md:py-20" aria-labelledby="blog-heading">
-      <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
+    <section
+      className="relative w-full bg-white py-12 md:py-20 pt-24 md:pt-28 pb-24 md:pb-28"
+      aria-labelledby="blog-heading"
+    >
+      <WaveDivider fill="#ffffff" variant="top" shapeId="transitionCream" direction="right" duration={8} />
+      <WaveDivider fill="#e6f4fc" variant="bottom" shapeId="transitionSage" direction="right" duration={5} />
+      <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20 relative z-10">
         {/* Header Card - same format as Cat/Dog/Follow Us sections */}
         <div className="relative rounded-2xl md:rounded-3xl bg-card overflow-hidden mb-6 md:mb-8 min-h-[160px] md:min-h-[200px] flex items-center shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
           <div className="relative z-10 p-6 md:p-12 max-w-[60%] md:max-w-md">

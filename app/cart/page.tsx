@@ -4,7 +4,6 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Minus, Plus, Trash2 } from "lucide-react"
-import { toast } from "sonner"
 import { TopBanner } from "@/components/pet-haven/top-banner"
 import { Header } from "@/components/pet-haven/header"
 import { PrimaryNav } from "@/components/pet-haven/primary-nav"
@@ -96,12 +95,11 @@ export default function CartPage() {
                                 try {
                                   if (line.quantity <= 1) {
                                     await removeItem(line.id)
-                                    toast.success("Item removed")
                                   } else {
                                     await updateItem(line.id, line.quantity - 1)
                                   }
                                 } catch {
-                                  toast.error("Failed to update cart")
+                                  // Failed to update cart
                                 } finally {
                                   setUpdatingLineId(null)
                                 }
@@ -122,7 +120,7 @@ export default function CartPage() {
                                 try {
                                   await updateItem(line.id, line.quantity + 1)
                                 } catch {
-                                  toast.error("Failed to update cart")
+                                  // Failed to update cart
                                 } finally {
                                   setUpdatingLineId(null)
                                 }
@@ -140,9 +138,8 @@ export default function CartPage() {
                               setUpdatingLineId(line.id)
                               try {
                                 await removeItem(line.id)
-                                toast.success("Item removed")
                               } catch {
-                                toast.error("Failed to remove item")
+                                // Failed to remove item
                               } finally {
                                 setUpdatingLineId(null)
                               }

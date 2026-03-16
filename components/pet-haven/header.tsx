@@ -99,8 +99,7 @@ export function Header() {
               <li><a href="#" className="block text-sm text-foreground hover:text-primary">Dog</a></li>
               <li><a href="#" className="block text-sm text-foreground hover:text-primary">Cat</a></li>
               <li><a href="#" className="block text-sm text-foreground hover:text-primary">Pet News</a></li>
-              <li><a href="#" className="block text-sm text-foreground hover:text-primary">About Us</a></li>
-              <li><a href="#" className="block text-sm text-foreground hover:text-primary">Contact us</a></li>
+              <li><a href="/collections/all" className="block text-sm text-foreground hover:text-primary">Shop</a></li>
               <li className="pt-2 border-t border-border">
                 <a href="#" className="block text-sm font-medium text-foreground hover:text-primary">Sign In</a>
               </li>

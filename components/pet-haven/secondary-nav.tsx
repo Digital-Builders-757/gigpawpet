@@ -3,8 +3,7 @@ const navLinks = [
   { label: "Dog", href: "/collections/dogs" },
   { label: "Cat", href: "/collections/cats" },
   { label: "Pet News", href: "/pet-news" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact us", href: "/contact" },
+  { label: "Shop", href: "/collections/all" },
 ]
 
 export function SecondaryNav() {

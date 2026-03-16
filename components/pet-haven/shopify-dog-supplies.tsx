@@ -1,16 +1,25 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ShopifyProductCard } from "./shopify-product-card"
+import { WaveDivider } from "./wave-divider"
 import type { Product } from "@/types/shopify"
 
 interface ShopifyDogSuppliesProps {
   products: Product[]
 }
 
+const LIGHT_BLUE = "#e8f4fc"
+
 export function ShopifyDogSupplies({ products }: ShopifyDogSuppliesProps) {
   return (
-    <section className="w-full py-12 md:py-20" style={{ backgroundColor: '#e8f4fc' }} aria-labelledby="dog-supplies-heading">
-      <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20">
+    <section
+      className="relative w-full py-12 md:py-20 pt-24 md:pt-28 pb-24 md:pb-28"
+      style={{ backgroundColor: LIGHT_BLUE }}
+      aria-labelledby="dog-supplies-heading"
+    >
+      <WaveDivider fill="#ffffff" variant="top" shapeId="dogSuppliesTop" direction="right" duration={6} />
+      <WaveDivider fill="#ffffff" variant="bottom" shapeId="transitionCream" direction="left" duration={7} />
+      <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20 relative z-10">
         {/* Header Card */}
         <div className="relative rounded-2xl md:rounded-3xl bg-card overflow-hidden mb-6 md:mb-8 min-h-[160px] md:min-h-[200px] flex items-center shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
           <div className="relative z-10 p-6 md:p-12 max-w-[60%] md:max-w-md">

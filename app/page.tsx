@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic"
 import { TopBanner } from "@/components/pet-haven/top-banner"
 import { Header } from "@/components/pet-haven/header"
-import { PrimaryNav } from "@/components/pet-haven/primary-nav"
 import { SecondaryNav } from "@/components/pet-haven/secondary-nav"
 import { PromoBanner } from "@/components/pet-haven/promo-banner"
 import { VideoHero } from "@/components/pet-haven/video-hero"
@@ -45,7 +44,6 @@ export default async function Home() {
     <main id="main-content" className="min-h-screen bg-background" role="main">
       <TopBanner />
       <Header />
-      <PrimaryNav />
       <SecondaryNav />
       <PromoBanner />
       <VideoHero />

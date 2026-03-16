@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Minus, Plus, Trash2 } from 'lucide-react'
-import { toast } from 'sonner'
 import { useCart } from '@/context/CartContext'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
@@ -77,12 +76,11 @@ export function CartDrawer() {
                                 try {
                                   if (line.quantity <= 1) {
                                     await removeItem(line.id)
-                                    toast.success('Item removed')
                                   } else {
                                     await updateItem(line.id, line.quantity - 1)
                                   }
                                 } catch {
-                                  toast.error('Failed to update cart')
+                                  // Failed to update cart
                                 } finally {
                                   setUpdatingLineId(null)
                                 }
@@ -104,7 +102,7 @@ export function CartDrawer() {
                                 try {
                                   await updateItem(line.id, line.quantity + 1)
                                 } catch {
-                                  toast.error('Failed to update cart')
+                                  // Failed to update cart
                                 } finally {
                                   setUpdatingLineId(null)
                                 }
@@ -122,9 +120,8 @@ export function CartDrawer() {
                               setUpdatingLineId(line.id)
                               try {
                                 await removeItem(line.id)
-                                toast.success('Item removed')
                               } catch {
-                                toast.error('Failed to remove item')
+                                // Failed to remove item
                               } finally {
                                 setUpdatingLineId(null)
                               }

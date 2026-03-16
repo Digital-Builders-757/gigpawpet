@@ -99,7 +99,7 @@ export function SocialVideos() {
               key={video.id}
               className="relative bg-white rounded-xl overflow-hidden flex justify-center"
             >
-              <div className="w-full max-w-[280px] mx-auto aspect-[9/16]">
+              <div className="w-full max-w-[280px] mx-auto aspect-[9/16] sm:aspect-auto sm:h-[350px]">
                 <iframe
                   src={`https://www.tiktok.com/player/v1/${video.videoId}?controls=0&progress_bar=0&volume_control=0&fullscreen_button=0&timestamp=0&music_info=0&description=0&closed_caption=0&rel=0`}
                   className="w-full h-full border-0"

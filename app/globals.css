@@ -131,3 +131,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Wave divider drift animations */
+@keyframes wave-drift-left {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-2%); }
+}
+@keyframes wave-drift-right {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(2%); }
+}
+.animate-wave-drift-left {
+  animation: wave-drift-left ease-in-out infinite;
+}
+.animate-wave-drift-right {
+  animation: wave-drift-right ease-in-out infinite;
+}
