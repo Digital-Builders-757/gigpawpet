@@ -62,8 +62,8 @@ export function VideoHero() {
         />
       ))}
 
-      {/* Black tint overlay at 60% */}
-      <div className="absolute inset-0 z-[2] bg-black/60" />
+      {/* Overlay */}
+      <div className="absolute inset-0 z-[2]" style={{ backgroundColor: "rgba(230, 244, 252, 0.6)" }} />
 
       {/* Wave at bottom - mirrors New Arrivals top for seamless transition */}
       <WaveDivider fill="#ffffff" variant="bottom" shapeId="newArrivalsTop" direction="left" duration={6} className="z-[3]" />
