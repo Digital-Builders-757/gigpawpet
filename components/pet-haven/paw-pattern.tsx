@@ -1,14 +1,16 @@
-export function PawPattern({ className = "" }: { className?: string }) {
+const DEFAULT_PAW_COLOR = "rgba(46, 134, 181, 0.12)"
+
+export function PawPattern({ className = "", color = DEFAULT_PAW_COLOR }: { className?: string; color?: string }) {
   const pawSvg = (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       {/* Main pad */}
-      <ellipse cx="10" cy="14" rx="4" ry="4" fill="rgba(46, 134, 181, 0.12)" />
+      <ellipse cx="10" cy="14" rx="4" ry="4" fill={color} />
       {/* Toe pads */}
-      <circle cx="6" cy="8" r="2" fill="rgba(46, 134, 181, 0.12)" />
-      <circle cx="10" cy="5" r="2" fill="rgba(46, 134, 181, 0.12)" />
-      <circle cx="14" cy="8" r="2" fill="rgba(46, 134, 181, 0.12)" />
-      <circle cx="7" cy="11" r="1.5" fill="rgba(46, 134, 181, 0.12)" />
-      <circle cx="13" cy="11" r="1.5" fill="rgba(46, 134, 181, 0.12)" />
+      <circle cx="6" cy="8" r="2" fill={color} />
+      <circle cx="10" cy="5" r="2" fill={color} />
+      <circle cx="14" cy="8" r="2" fill={color} />
+      <circle cx="7" cy="11" r="1.5" fill={color} />
+      <circle cx="13" cy="11" r="1.5" fill={color} />
     </svg>
   )
 

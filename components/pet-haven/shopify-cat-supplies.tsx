@@ -1,8 +1,8 @@
-import Image from "next/image"
 import Link from "next/link"
 import { ShopifyProductCard } from "./shopify-product-card"
 import { WaveDivider } from "./wave-divider"
 import { PawPattern } from "./paw-pattern"
+import { HeaderVideo } from "./header-video"
 import type { Product } from "@/types/shopify"
 
 interface ShopifyCatSuppliesProps {
@@ -33,18 +33,12 @@ export function ShopifyCatSupplies({ products }: ShopifyCatSuppliesProps) {
             </p>
           </div>
           
-          {/* Decorative polygon with cat image */}
+          {/* Decorative polygon with cat video */}
           <div 
-            className="absolute right-0 top-0 bottom-0 w-1/2"
+            className="absolute right-0 top-0 bottom-0 w-1/2 min-w-0 min-h-[160px]"
             style={{ clipPath: "polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
           >
-            <Image
-              src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&h=400&fit=crop"
-              alt="Cute cat"
-              fill
-              sizes="(max-width: 768px) 50vw, 400px"
-              className="object-cover"
-            />
+            <HeaderVideo src="/cat-header.mp4" ariaLabel="Cats drinking from water bowl" />
           </div>
         </div>
 

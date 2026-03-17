@@ -1,25 +1,26 @@
-import Image from "next/image"
 import Link from "next/link"
 import { ShopifyProductCard } from "./shopify-product-card"
 import { WaveDivider } from "./wave-divider"
 import { PawPattern } from "./paw-pattern"
+import { HeaderVideo } from "./header-video"
 import type { Product } from "@/types/shopify"
 
 interface ShopifyDogSuppliesProps {
   products: Product[]
 }
 
+const PRIMARY_BLUE = "#2e86b5"
 const LIGHT_BLUE = "#e8f4fc"
 
 export function ShopifyDogSupplies({ products }: ShopifyDogSuppliesProps) {
   return (
     <section
       className="relative w-full py-12 md:py-20 pt-24 md:pt-28 pb-24 md:pb-28 overflow-hidden"
-      style={{ backgroundColor: LIGHT_BLUE }}
+      style={{ backgroundColor: PRIMARY_BLUE }}
       aria-labelledby="dog-supplies-heading"
     >
-      <PawPattern />
-      <WaveDivider fill="#ffffff" variant="top" shapeId="dogSuppliesTop" direction="right" duration={6} />
+      <PawPattern color={LIGHT_BLUE} />
+      <WaveDivider fill={PRIMARY_BLUE} variant="top" shapeId="dogSuppliesTop" direction="right" duration={6} />
       <WaveDivider fill="#ffffff" variant="bottom" shapeId="transitionCream" direction="left" duration={7} />
       <div className="max-w-[1232px] mx-auto px-4 md:px-12 lg:px-20 relative z-10">
         {/* Header Card */}
@@ -33,18 +34,12 @@ export function ShopifyDogSupplies({ products }: ShopifyDogSuppliesProps) {
             </p>
           </div>
           
-          {/* Decorative polygon with dog image */}
+          {/* Decorative polygon with dog video */}
           <div 
-            className="absolute right-0 top-0 bottom-0 w-1/2"
+            className="absolute right-0 top-0 bottom-0 w-1/2 min-w-0 min-h-[160px]"
             style={{ clipPath: "polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
           >
-            <Image
-              src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=400&fit=crop"
-              alt="Happy dog"
-              fill
-              sizes="(max-width: 768px) 50vw, 400px"
-              className="object-cover"
-            />
+            <HeaderVideo src="/dog-header.mp4" ariaLabel="Dogs playing tug-of-war" />
           </div>
         </div>
 
@@ -52,7 +47,7 @@ export function ShopifyDogSupplies({ products }: ShopifyDogSuppliesProps) {
         {products.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {products.map((product) => (
-              <ShopifyProductCard key={product.id} product={product} />
+              <ShopifyProductCard key={product.id} product={product} ctaBackgroundColor={LIGHT_BLUE} />
             ))}
           </div>
         ) : (
@@ -64,7 +59,8 @@ export function ShopifyDogSupplies({ products }: ShopifyDogSuppliesProps) {
         <div className="mt-[100px] text-center">
           <Link
             href="/collections/dogs"
-            className="inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
+            className="inline-flex items-center rounded-full px-6 py-3 text-sm font-medium text-primary transition-colors hover:opacity-90"
+            style={{ backgroundColor: "#e8f4fc" }}
             aria-label="View all dog supplies"
           >
             Shop All Dog Supplies

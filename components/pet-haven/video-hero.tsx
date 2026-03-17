@@ -65,7 +65,7 @@ export function VideoHero({ className = "" }: { className?: string }) {
       <div className="absolute inset-0 z-[2]" style={{ backgroundColor: "rgba(230, 244, 252, 0.6)" }} />
 
       {/* Wave at bottom - mirrors New Arrivals top for seamless transition */}
-      <WaveDivider fill="#ffffff" variant="bottom" shapeId="newArrivalsTop" direction="left" duration={6} className="z-[3]" />
+      <WaveDivider fill="#f9f9fa" variant="bottom" shapeId="newArrivalsTop" direction="left" duration={6} className="z-[3]" />
 
       {/* Floating light particles animation */}
       <HeroParticles />

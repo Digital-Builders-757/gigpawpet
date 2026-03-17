@@ -1,7 +1,5 @@
 "use client"
 
-import { useId } from "react"
-
 /**
  * Unique wave path definitions. Each produces a distinct shape.
  * viewBox 0 0 1200 100 - paths span full width, height ~100 for curves.
@@ -53,7 +51,6 @@ export function WaveDivider({
   extendBelow = false,
   flipVertical = false,
 }: WaveDividerProps) {
-  const filterId = `wave-shadow-${useId().replace(/:/g, "")}`
   const pathData = WAVE_PATHS[shapeId]
   if (!pathData) return null
 
@@ -84,15 +81,9 @@ export function WaveDivider({
         className="block w-full h-full"
         aria-hidden="true"
       >
-        <defs>
-          <filter id={filterId} x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="rgba(0,0,0,0.15)" />
-          </filter>
-        </defs>
         <path
           d={pathData}
           fill={fill}
-          filter={`url(#${filterId})`}
           transform={
             needsFlip
               ? "scale(1, -1) translate(0, 100)"

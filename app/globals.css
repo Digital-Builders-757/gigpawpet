@@ -79,7 +79,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), 'Inter', sans-serif;
+  --font-sans: var(--font-jakarta), 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-navy: var(--navy);
   --color-gray-text: var(--gray-text);

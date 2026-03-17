@@ -12,7 +12,8 @@ const LIGHT_BLUE = "#e8f4fc"
 export function ShopifyNewArrivals({ products }: ShopifyNewArrivalsProps) {
   return (
     <section
-      className="relative w-full overflow-visible bg-white py-12 md:py-20 pt-24 md:pt-28 pb-24 md:pb-28"
+      className="relative w-full overflow-hidden py-12 md:py-20 pt-24 md:pt-28 pb-24 md:pb-28"
+      style={{ backgroundColor: "#f9f9fa" }}
       aria-labelledby="new-arrivals-heading"
     >
       <WaveDivider fill="#ffffff" variant="top" shapeId="newArrivalsTop" direction="right" duration={6} />
