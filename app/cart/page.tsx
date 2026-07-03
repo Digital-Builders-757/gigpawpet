@@ -12,6 +12,7 @@ import { Footer } from "@/components/pet-haven/footer"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/context/CartContext"
 import { formatPrice } from "@/lib/normalize"
+import { openCheckout } from "@/lib/checkout"
 
 export default function CartPage() {
   const { cart, removeItem, updateItem } = useCart()
@@ -173,14 +174,13 @@ export default function CartPage() {
                       Shipping and taxes calculated at checkout
                     </p>
                   </div>
-                  <Button className="w-full" size="lg" asChild>
-                    <a
-                      href={cart.checkoutUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Proceed to Checkout
-                    </a>
+                  <Button
+                    className="w-full"
+                    size="lg"
+                    disabled={!cart.checkoutUrl}
+                    onClick={() => openCheckout(cart.checkoutUrl)}
+                  >
+                    Proceed to Checkout
                   </Button>
                   <Button variant="outline" className="w-full mt-3" asChild>
                     <Link href="/">Continue Shopping</Link>
